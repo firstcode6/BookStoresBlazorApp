@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\TestRazorClassLibrary\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\TestRazorClassLibrary.bundle.scp.css",
+      "PackagePath": "staticwebassets\\TestRazorClassLibrary.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\TestRazorClassLibrary\\wwwroot\\background.png",
+      "PackagePath": "staticwebassets\\background.png"
+    },
+    {
+      "Id": "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\TestRazorClassLibrary\\wwwroot\\exampleJsInterop.js",
+      "PackagePath": "staticwebassets\\exampleJsInterop.js"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.TestRazorClassLibrary.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.TestRazorClassLibrary.props",
+      "PackagePath": "build\\TestRazorClassLibrary.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.TestRazorClassLibrary.props",
+      "PackagePath": "buildMultiTargeting\\TestRazorClassLibrary.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.TestRazorClassLibrary.props",
+      "PackagePath": "buildTransitive\\TestRazorClassLibrary.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

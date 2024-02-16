@@ -1,0 +1,66 @@
+﻿@using Microsoft.JSInterop;
+@inject IJSRuntime _jsRuntime;
+
+<select @bind="CurrentCity" class="form-control col-3">
+    @if (@Cities != null)
+    {
+        <option value="">Select city (Blazor)...</option>
+        @foreach (var city in Cities)
+        {
+            <option value="@city">@city</option>
+        }
+    }
+</select>
+
+@code {
+    #region Properties
+
+    private string _currentCity;
+    /// <summary>
+    /// CurrentCity
+    /// </summary>
+    [Parameter]
+    public string CurrentCity
+    {
+        get => _currentCity;
+        set
+        {
+            if (_currentCity != value)
+            {
+                _currentCity = value;
+                CurrentCityChanged.InvokeAsync(value);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Callback Event
+    /// </summary>
+    [Parameter]
+    public EventCallback<string> CurrentCityChanged { get; set; }
+
+    /// <summary>
+    /// Array of cities
+    /// </summary>
+    public string[] Cities { get; set; }
+
+    #endregion
+
+    #region LifeCycle
+
+    /// <summary>
+    /// Download cities from js file
+    /// </summary>
+    /// <param name="firstRender"></param>
+    /// <returns></returns>
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && Cities == null)
+        {
+            Cities = await _jsRuntime.InvokeAsync<string[]>("getCities");
+            StateHasChanged();
+        }
+    }
+
+    #endregion
+}

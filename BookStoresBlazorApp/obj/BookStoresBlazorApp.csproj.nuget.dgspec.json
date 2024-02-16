@@ -1,0 +1,189 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\BookStoresBlazorApp\\BookStoresBlazorApp.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\BookStoresBlazorApp\\BookStoresBlazorApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\BookStoresBlazorApp\\BookStoresBlazorApp.csproj",
+        "projectName": "BookStoresBlazorApp",
+        "projectPath": "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\BookStoresBlazorApp\\BookStoresBlazorApp.csproj",
+        "packagesPath": "C:\\Users\\ravil\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\BookStoresBlazorApp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ravil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\DataLibrary\\DataLibrary.csproj": {
+                "projectPath": "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\DataLibrary\\DataLibrary.csproj"
+              },
+              "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\TestRazorClassLibrary\\TestRazorClassLibrary.csproj": {
+                "projectPath": "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\TestRazorClassLibrary\\TestRazorClassLibrary.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\DataLibrary\\DataLibrary.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\DataLibrary\\DataLibrary.csproj",
+        "projectName": "DataLibrary",
+        "projectPath": "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\DataLibrary\\DataLibrary.csproj",
+        "packagesPath": "C:\\Users\\ravil\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\DataLibrary\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ravil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\TestRazorClassLibrary\\TestRazorClassLibrary.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\TestRazorClassLibrary\\TestRazorClassLibrary.csproj",
+        "projectName": "TestRazorClassLibrary",
+        "projectPath": "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\TestRazorClassLibrary\\TestRazorClassLibrary.csproj",
+        "packagesPath": "C:\\Users\\ravil\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ravil\\source\\repos\\BookStoresBlazorApp\\TestRazorClassLibrary\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ravil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.Web": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+﻿@if (IsVisibleMessage)
+{
+	@if (IsSuccess)
+	{
+		<div id="divValidationMessage" class="col-10 alert alert-info row">
+			<div class="col-11" style="text-align:left">
+				<span>@ChildContent has been saved successfully</span>
+			</div>
+			<div class="col-1" style="text-align:right">
+				<a style="text-underline-position: below; cursor: pointer" @onclick="(() => CloseMessage())">x</a>
+			</div>
+		</div>
+	}
+	else
+	{
+		<div id="divValidationMessage" class="col-10 alert alert-danger row">
+			<div class="col-11" style="text-align:left">
+				<span>Oops, something wrong!</span>
+			</div>
+			<div class="col-1" style="text-align:right">
+				<a style="text-underline-position: below; cursor: pointer" @onclick="(() => CloseMessage())">x</a>
+			</div>
+		</div>
+	}
+}
+
+@code {
+	#region Properties
+
+	/// <summary>
+	/// The visibility of the message
+	/// </summary>
+	[Parameter]
+	public bool IsVisibleMessage { get; set; }
+
+	/// <summary>
+	/// Content
+	/// </summary>
+	[Parameter]
+	public RenderFragment ChildContent { get; set; }
+
+	/// <summary>
+	/// The successfulness of the message
+	/// </summary>
+	[Parameter]
+	public bool IsSuccess { get; set; }
+
+	#endregion
+
+	#region Methods
+	/// <summary>
+	/// Close button
+	/// </summary>
+	private void CloseMessage()
+	{
+		IsVisibleMessage = false;
+	}
+	#endregion
+}

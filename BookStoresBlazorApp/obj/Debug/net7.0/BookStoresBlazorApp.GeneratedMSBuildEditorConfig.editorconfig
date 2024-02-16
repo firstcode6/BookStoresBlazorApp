@@ -1,0 +1,71 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = BookStoresBlazorApp
+build_property.RootNamespace = BookStoresBlazorApp
+build_property.ProjectDir = C:\Users\ravil\source\repos\BookStoresBlazorApp\BookStoresBlazorApp\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\ravil\source\repos\BookStoresBlazorApp\BookStoresBlazorApp
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/ravil/source/repos/BookStoresBlazorApp/BookStoresBlazorApp/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ravil/source/repos/BookStoresBlazorApp/BookStoresBlazorApp/Pages/AuthorDetail.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aG9yRGV0YWlsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ravil/source/repos/BookStoresBlazorApp/BookStoresBlazorApp/Pages/Authors.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aG9ycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ravil/source/repos/BookStoresBlazorApp/BookStoresBlazorApp/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ravil/source/repos/BookStoresBlazorApp/BookStoresBlazorApp/Pages/Publishers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGlzaGVycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ravil/source/repos/BookStoresBlazorApp/BookStoresBlazorApp/Shared/DisplayResultMessage.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXERpc3BsYXlSZXN1bHRNZXNzYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ravil/source/repos/BookStoresBlazorApp/BookStoresBlazorApp/Shared/SelectCityComboBox.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFNlbGVjdENpdHlDb21ib0JveC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ravil/source/repos/BookStoresBlazorApp/BookStoresBlazorApp/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ravil/source/repos/BookStoresBlazorApp/BookStoresBlazorApp/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ravil/source/repos/BookStoresBlazorApp/BookStoresBlazorApp/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-n8z3jcqrrc
+
+[C:/Users/ravil/source/repos/BookStoresBlazorApp/BookStoresBlazorApp/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-bfiwkwizwv
+
+[C:/Users/ravil/source/repos/BookStoresBlazorApp/BookStoresBlazorApp/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ravil/source/repos/BookStoresBlazorApp/BookStoresBlazorApp/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

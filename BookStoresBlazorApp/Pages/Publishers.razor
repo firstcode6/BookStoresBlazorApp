@@ -1,0 +1,179 @@
+﻿@page "/publishers"
+
+@using DataLibrary.Models;
+
+@inject IJSRuntime _jsRuntime;
+@inject HttpClient _httpClient
+@implements IDisposable;
+
+<div class="col-12">
+    <h3>Enter Publisher Information</h3>
+    <hr />
+</div>
+
+
+<br />
+<DisplayResultMessage IsVisibleMessage="IsVisibleMessage" IsSuccess="IsSuccess">
+    <span>Publisher: </span>@RecordName
+</DisplayResultMessage>
+
+<h3>Form:</h3>
+<EditForm Model="@Publisher" OnValidSubmit="MyHandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div>
+        <label for="publisherName">Publisher name:</label>
+        <input @ref="_firstNameTextBox" id="publisherName" class="form-control col-3" @bind="Publisher.PublisherName" placeholder="publisher's name" />
+        <ValidationMessage For="@(() => Publisher.PublisherName)" />
+    </div>
+    <div>
+        <label for="city">City:</label>
+        <SelectCityComboBox @bind-CurrentCity="Publisher.City" />
+    </div>
+    <br />
+    <div>
+        <span class="col-2"></span>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-danger" @onclick="ClearPublisher">Clear</button>
+    </div>
+
+</EditForm>
+
+<div class="col-10">
+
+    <h3><b>Publishers</b></h3>
+    @if (PublisherList != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Publisher Name</th>
+                    <th>City</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var publisher in PublisherList)
+                {
+                    <tr>
+                        <td>@publisher.Id</td>
+                        <td>@publisher.PublisherName</td>
+                        <td>@publisher.City</td>
+
+                        @* <td>
+                <button class="btn btn-primary"
+                @onclick="(() => ShowDetailAuthor(author.Id))">
+                <i class="oi oi-pencil"></i>
+                </button>
+                </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@code {
+    ElementReference _firstNameTextBox;
+
+    #region Properties
+
+    /// <summary>
+    /// One entity
+    /// </summary>
+    Publisher Publisher { get; set; }
+
+    /// <summary>
+    /// List of publishers
+    /// </summary>
+    List<Publisher> PublisherList { get; set; }
+
+    /// <summary>
+    /// The name of author
+    /// </summary>
+    public string? RecordName { get; set; }
+
+    /// <summary>
+    /// The visibility of DisplayResultMessage
+    /// </summary>
+    public bool IsVisibleMessage { get; set; }
+
+    /// <summary>
+    /// The successfulness of DisplayResultMessage
+    /// </summary>
+    public bool IsSuccess { get; set; }
+
+    /// <summary>
+    ///  SelectedCity in SelectCityComboBox
+    /// </summary>
+    public string SelectedCity { get; set; }
+
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// Handle submit in form
+    /// </summary>
+    /// <returns></returns>
+    async Task MyHandleValidSubmit()
+    {
+        // add
+        HttpResponseMessage response = await _httpClient.PostAsJsonAsync("https://localhost:7068/api/Publishers", Publisher);
+  
+        if (response.IsSuccessStatusCode)
+        {
+            // DisplayResultMessage
+            IsSuccess = true;
+            RecordName = Publisher.PublisherName;
+            await OnInitializedAsync();
+        }
+        else
+        {
+            // DisplayResultMessage
+            IsSuccess = false;
+        }
+        IsVisibleMessage = true;
+
+        // set focus
+        await _jsRuntime.InvokeVoidAsync("setFocusOnElement", _firstNameTextBox);
+    }
+
+    /// <summary>
+    /// Clear form
+    /// </summary>
+    /// <returns></returns>
+    private void ClearPublisher()
+    {
+        Publisher = new Publisher();
+    }
+
+    #endregion
+
+    #region LifeCycle
+
+    /// <summary>
+    /// Input
+    /// </summary>
+    /// <returns></returns>
+    protected override async Task OnInitializedAsync()
+    {
+        Publisher = new Publisher();
+        PublisherList = new List<Publisher>();
+
+        PublisherList = await _httpClient.GetFromJsonAsync<List<Publisher>>("https://localhost:7068/api/Publishers/GetPublishers");
+        PublisherList = PublisherList.OrderByDescending(a => a.Id).ToList();
+    }
+
+    /// <summary>
+    /// Dispose
+    /// </summary>
+    public void Dispose()
+    {
+        PublisherList.Clear();
+        PublisherList = null;
+    }
+
+    #endregion
+}

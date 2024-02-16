@@ -1,0 +1,73 @@
+﻿@page "/authors/authordetail/{id:int}"
+@page "/authors/authordetail"
+@page "/author"
+@page "/author/{id:int}"
+
+@using DataLibrary.Models;
+@inject HttpClient _httpClient
+
+<h3>Details "@_authorDetail.FirstName @_authorDetail.LastName"</h3>
+<hr />
+
+<div class="col-12 row" style="width: 50%;">
+    @if (Id != null)
+    {
+        <h5 class="col-12 row" style="font-weight:bold">Id: @_authorDetail.Id</h5>
+        <h5 class="col-12 row" style="font-weight:bold"> Person: @_authorDetail.FirstName @_authorDetail.LastName</h5>
+        <h6 class="col-12 row">City: @_authorDetail.City</h6>
+        <h6 class="col-12 row">Email Address: @_authorDetail.EmailAddress</h6>
+        <h6 class="col-12 row">Salary: $@_authorDetail.Salary</h6>
+        <h6 class="col-12 row">Phone Number: @_authorDetail.PhoneNumber</h6>
+        <br />
+        <hr />
+    }
+</div>
+
+<hr />
+@* <div class="col 12 row">@AuthorService.GetCreatedDate()</div> *@
+
+
+@code {
+
+    #region Properties
+
+    /// <summary>
+    /// Id
+    /// </summary>
+    [Parameter]
+    public int? Id { get; set; }
+
+    /// <summary>
+    /// Selected author
+    /// </summary>
+    Author _authorDetail = new Author();
+
+    #endregion
+
+    #region LifeCycle
+
+    /// <summary>
+    /// initialition
+    /// </summary>
+    protected override void OnInitialized()
+    {
+
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id != null)
+        {
+            _authorDetail = await _httpClient.GetFromJsonAsync<Author>("https://localhost:7068/api/Authors/GetAuthor/" + Id);
+        }
+    }
+
+    #endregion
+
+}
+
+

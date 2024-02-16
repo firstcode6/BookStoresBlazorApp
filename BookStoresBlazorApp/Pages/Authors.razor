@@ -1,0 +1,324 @@
+﻿@page "/authors"
+
+@using DataLibrary.Models;
+
+@inject IJSRuntime _jsRuntime;
+@inject HttpClient _httpClient
+@inject NavigationManager _navigationManager;
+@implements IDisposable;
+
+
+<div class="col-12">
+    <h3>Enter Author Information</h3>
+    <hr />
+</div>
+
+<br />
+@* <div id="divServerValidation" class="col-10 alter alert-info" /> *@
+<DisplayResultMessage IsVisibleMessage="IsVisibleMessage" IsSuccess="IsSuccess">
+    <span>Author: </span>@RecordName
+</DisplayResultMessage>
+
+<EditForm Model="@Author" OnValidSubmit="MyHandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div>
+        <label for="firstName">First name:</label>
+        <input @ref="_firstNameTextBox" id="firstName" class="form-control col-3" @bind="Author.FirstName" placeholder="first name" />
+        <ValidationMessage For="@(() => Author.FirstName)" />
+    </div>
+    <div>
+        <label for="lastName">Last name:</label>
+        <InputText id="lastName" class="form-control col-3" @bind-Value="Author.LastName" placeholder="last name" />
+        <ValidationMessage For="@(() => Author.LastName)" />
+    </div>
+    <div>
+        <label for="city">City:</label>
+@*         <InputSelect @bind-Value="Author.City" class="form-control col-3">
+            @if (@Cities != null)
+            {
+                @foreach (var city in Cities)
+                {
+                    <option value="@city">@city</option>
+                }
+            }
+        </InputSelect> *@
+        @* <SelectCityComboBox @bind-CurrentCity="Author.City" /> *@
+        <TestRazorClassLibrary.SelectCityComboBox @bind-CurrentCity="Author.City" />
+    </div>
+
+    <div>
+        <label for="emailAddress">Email address:</label>
+        <InputText id="emailAddress" class="form-control col-3" @bind-Value="Author.EmailAddress" placeholder="email address" />
+        <ValidationMessage For="@(() => Author.EmailAddress)" />
+    </div>
+    <div class="col-12">
+        <label for="salary">Salary:</label>
+        <InputNumber id="salary" class="form-control col-3" @bind-Value="Author.Salary" placeholder="salary" />
+        <ValidationMessage For="@(() => Author.Salary)" />
+    </div>
+    <div>
+        <label for="phoneNumber">Phone Number</label>
+        <InputText id="phoneNumber" class="form-control col-3" @bind-Value="Author.PhoneNumber" placeholder="phone number" />
+        <ValidationMessage For="@(() => Author.PhoneNumber)" />
+    </div>
+    <br />
+    <div>
+        <span class="col-2"></span>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-danger" @onclick="ClearAuthor">Clear</button>
+    </div>
+</EditForm>
+
+<div class="col-10">
+    <h3><b>Authors</b></h3>
+    @if (AuthorList != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>City</th>
+                    <th>Email Address</th>
+                    <th>Salary</th>
+                    <th>Phone Number</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var author in AuthorList)
+                {
+                    <tr>
+                        <td>
+                            <NavLink href=@string.Format("/authors/author/{0}",@author.Id)>
+                                @author.Id
+                            </NavLink>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary"
+                            @onclick="(() => ShowDetailAuthor(author.Id))">
+                                @author.FirstName
+                            </button>
+                        </td>
+                        <td>@author.LastName</td>
+                        <td>@author.City</td>
+                        <td>@author.EmailAddress</td>
+                        <td>$@author.Salary</td>
+                        <td>@author.PhoneNumber</td>
+                        <td>
+                            <button class="btn btn-primary"
+                            @onclick="(() => EditAuthor(author))">
+                                <i class="oi oi-pencil"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary"
+                            @onclick="(() => DeleteAuthor(author.Id))">
+                                <i class="oi oi-delete"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+</div>
+
+<hr />
+@* <div class="col 12 row">@GetCreatedDate()</div> *@
+
+@code {
+    ElementReference _firstNameTextBox;
+
+    #region Properties
+
+    /// <summary>
+    /// One entity
+    /// </summary>
+    Author Author { get; set; }
+
+    /// <summary>
+    /// List of authors
+    /// </summary>
+    List<Author> AuthorList { get; set; }
+
+    /// <summary>
+    /// Array of cities
+    /// </summary>
+    //public string[] Cities { get; set; }
+
+    /// <summary>
+    /// The name of author
+    /// </summary>
+    public string? RecordName { get; set; }
+
+    /// <summary>
+    /// The visibility of DisplayResultMessage
+    /// </summary>
+    public bool IsVisibleMessage { get; set; }
+
+    /// <summary>
+    /// The successfulness of DisplayResultMessage
+    /// </summary>
+    public bool IsSuccess { get; set; }
+
+    /// <summary>
+    ///  SelectedCity in SelectCityComboBox
+    /// </summary>
+    public string SelectedCity { get; set; }
+
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// Handle submit in form
+    /// </summary>
+    /// <returns></returns>
+    async Task MyHandleValidSubmit()
+    {
+        HttpResponseMessage response;
+
+        if (Author.Id == 0)
+        {
+            response = await _httpClient.PostAsJsonAsync("https://localhost:7068/api/Authors", Author);
+        }
+        else
+        { 
+            response = await _httpClient.PutAsJsonAsync("https://localhost:7068/api/Authors/" + Author.Id, Author); 
+        }
+
+
+        if (response.IsSuccessStatusCode)
+        {
+            // DisplayResultMessage
+            IsSuccess = true;
+            RecordName = Author.FirstName + " " + Author.LastName;
+            await OnInitializedAsync();
+        }
+        else
+        {
+            // DisplayResultMessage
+            IsSuccess = false;
+        }
+        IsVisibleMessage = true;
+
+        // set focus
+        await _jsRuntime.InvokeVoidAsync("setFocusOnElement", _firstNameTextBox);
+    }
+
+    /// <summary>
+    /// Download data from server
+    /// </summary>
+    /// <returns></returns>
+    private async Task LoadAuthors()
+    {
+        AuthorList = await _httpClient.GetFromJsonAsync<List<Author>>("https://localhost:7068/api/Authors/GetAuthors");
+        AuthorList = AuthorList?.OrderByDescending(a => a.Id).ToList();
+        StateHasChanged();
+    }
+
+    /// <summary>
+    /// Open detail page
+    /// </summary>
+    /// <param name="authorId"></param>
+    private void ShowDetailAuthor(int authorId)
+    {
+        _navigationManager.NavigateTo($"author/{authorId}");
+    }
+
+    /// <summary>
+    /// Clear form
+    /// </summary>
+    /// <returns></returns>
+    private void ClearAuthor()
+    {
+        Author = new Author();
+    }
+
+    /// <summary>
+    /// Delate
+    /// </summary>
+    /// <param name="authorId"></param>
+    /// <returns></returns>
+    private async Task DeleteAuthor(int authorId)
+    {
+        await _httpClient.DeleteAsync("https://localhost:7068/api/Authors/" + authorId);
+        await LoadAuthors();
+    }
+
+    /// <summary>
+    /// Edit
+    /// </summary>
+    /// <param name="author"></param>
+    /// <returns></returns>
+    private void EditAuthor(Author author)
+    {
+        Author = author;
+    }
+
+    /// <summary>
+    /// Get date
+    /// </summary>
+    /// <returns></returns>
+    // private async Task<string> GetCreatedDate()
+    // {
+    //     DateTime date = await _httpClient.GetFromJsonAsync<DateTime>("https://localhost:7068/api/Authors/GetDate");
+    //     return date.Date.ToString("yyyy-MM-dd");
+    // }
+
+    #endregion
+
+    #region LifeCycle
+
+    /// <summary>
+    /// Input
+    /// </summary>
+    /// <returns></returns>
+    protected override async Task OnInitializedAsync()
+    {
+        Author = new Author();
+        AuthorList = new List<Author>();
+
+        AuthorList = await _httpClient.GetFromJsonAsync<List<Author>>("https://localhost:7068/api/Authors/GetAuthors");
+        AuthorList = AuthorList.OrderByDescending(a => a.Id).ToList();
+
+        await base.OnInitializedAsync();
+    }
+
+    /// <summary>
+    /// Download cities from js file
+    /// </summary>
+    /// <param name="firstRender"></param>
+    /// <returns></returns>
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        // Console.WriteLine("Authors - OnAfterRenderAsync - firstRender = " + firstRender);
+        // if (firstRender && Cities == null)
+        // {
+        //     Cities = await _jsRuntime.InvokeAsync<string[]>("getCities");
+        //     StateHasChanged();
+        // }
+
+
+       // await _firstNameTextBox.FocusAsync();
+       // await _jsRuntime.InvokeVoidAsync("setFocusOnElement", _firstNameTextBox);
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    /// <summary>
+    /// Dispose
+    /// </summary>
+    public void Dispose()
+    {
+        AuthorList.Clear();
+        AuthorList = null;
+    }
+
+    #endregion
+}
